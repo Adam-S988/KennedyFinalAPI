@@ -1,4 +1,4 @@
-name: Java Test with MAven
+name: Java Test with Maven
 
 on: 
   pull_request:
