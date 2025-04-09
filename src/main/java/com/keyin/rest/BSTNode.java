@@ -1,23 +1,18 @@
 package com.keyin.rest;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BSTNode {
-    @JsonProperty("value")
     private int value;
-
-    @JsonProperty("left")
     private BSTNode left;
-
-    @JsonProperty("right")
     private BSTNode right;
 
-    // Default constructor needed for Jackson
+    // Default constructor
     public BSTNode() {
     }
 
+    // Constructor with value
     public BSTNode(int value) {
         this.value = value;
         this.left = null;

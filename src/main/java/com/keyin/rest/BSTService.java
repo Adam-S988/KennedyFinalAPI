@@ -16,6 +16,7 @@ public class BSTService {
     @Autowired
     private BSTRepository bstRepository;
 
+    // Update method to include ID in response
     public BSTResponseDTO createAndStoreBST(List<Integer> numbers) {
         logger.info("Creating BST with numbers: {}", numbers);
 
@@ -55,25 +56,30 @@ public class BSTService {
 
             // Store in database
             BST bstEntity = new BST(numbers, treeJson);
-            bstRepository.save(bstEntity);
+            BST savedEntity = bstRepository.save(bstEntity);
 
-            return new BSTResponseDTO(numbers, treeJson);
+            // Return response with ID
+            return new BSTResponseDTO(savedEntity.getId(), numbers, treeJson);
         } catch (Exception e) {
             logger.error("Error creating BST", e);
             return new BSTResponseDTO(numbers, createHardcodedBST(numbers));
         }
     }
 
+    // Also update the getAllTrees method to include IDs
+    public List<BSTResponseDTO> getAllTrees() {
+        return bstRepository.findAll()
+                .stream()
+                .map(entity -> new BSTResponseDTO(
+                        entity.getId(),
+                        entity.getNumbers(),
+                        entity.getTreeJson()))
+                .collect(Collectors.toList());
+    }
+
     // Hardcoded BST for testing purposes
     private String createHardcodedBST(List<Integer> numbers) {
         // Sample tree with exactly the format needed
         return "{\"root\":{\"value\":7,\"left\":{\"value\":2,\"left\":null,\"right\":{\"value\":4,\"left\":null,\"right\":null}},\"right\":{\"value\":13,\"left\":null,\"right\":null}}}";
-    }
-
-    public List<BSTResponseDTO> getAllTrees() {
-        return bstRepository.findAll()
-                .stream()
-                .map(entity -> new BSTResponseDTO(entity.getNumbers(), entity.getTreeJson()))
-                .collect(Collectors.toList());
     }
 }
