@@ -59,6 +59,11 @@ public class BinarySearchTree {
         }
     }
 
+    public BSTNode getRoot() {
+        return root;
+    }
+
+
     private BSTNode buildBalancedBSTHelper(List<Integer> sortedNumbers, int start, int end) {
         if (start > end) {
             return null;
