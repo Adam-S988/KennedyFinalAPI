@@ -31,5 +31,4 @@ public class BST {
     public String getTreeJson() { return treeJson; }
     public void setTreeJson(String treeJson) { this.treeJson = treeJson; }
 
-    //Test
 }

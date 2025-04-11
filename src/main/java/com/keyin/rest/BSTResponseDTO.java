@@ -7,24 +7,17 @@ public class BSTResponseDTO {
     private List<Integer> numbers;
     private String treeJson;
 
-    // Default constructor
-    public BSTResponseDTO() {
-    }
-
-    // Constructor with parameters
     public BSTResponseDTO(List<Integer> numbers, String treeJson) {
         this.numbers = numbers;
         this.treeJson = treeJson;
     }
 
-    // Constructor with all parameters
     public BSTResponseDTO(Long id, List<Integer> numbers, String treeJson) {
         this.id = id;
         this.numbers = numbers;
         this.treeJson = treeJson;
     }
 
-    // Getters and setters
     public Long getId() {
         return id;
     }
