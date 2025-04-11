@@ -42,12 +42,10 @@ public class BinarySearchTree {
             return;
         }
 
-        // Sort numbers
         List<Integer> sortedNumbers = new ArrayList<>(numbers);
         Collections.sort(sortedNumbers);
         logger.info("Sorted numbers: {}", sortedNumbers);
 
-        // Build balanced BST
         root = buildBalancedBSTHelper(sortedNumbers, 0, sortedNumbers.size() - 1);
 
         if (root != null) {
@@ -69,12 +67,10 @@ public class BinarySearchTree {
             return null;
         }
 
-        // Find the middle element
         int mid = (start + end) / 2;
         BSTNode node = new BSTNode(sortedNumbers.get(mid));
         logger.debug("Created node with value: {} (range: {}-{})", node.getValue(), start, end);
 
-        // Recursively construct left and right subtrees
         node.setLeft(buildBalancedBSTHelper(sortedNumbers, start, mid - 1));
         node.setRight(buildBalancedBSTHelper(sortedNumbers, mid + 1, end));
 
@@ -89,7 +85,6 @@ public class BinarySearchTree {
             }
 
             ObjectMapper objectMapper = new ObjectMapper();
-            // Wrap the root node in a "root" object to match the required format
             RootWrapper wrapper = new RootWrapper(root);
             String json = objectMapper.writeValueAsString(wrapper);
             logger.info("Generated JSON: {}", json);
@@ -101,7 +96,6 @@ public class BinarySearchTree {
         }
     }
 
-    // Wrapper class to match the required format
     public static class RootWrapper {
         @JsonProperty("root")
         private BSTNode root;
