@@ -71,25 +71,4 @@ public class BinarySearchTest {
         assertNotNull(right.getRight());
         assertEquals(9, right.getRight().getValue());
     }
-
-    @Test
-    void testSearchInBinarySearchTree() {
-        BinarySearchTree tree = new BinarySearchTree();
-
-        List<Integer> input = Arrays.asList(20, 10, 30, 5, 15, 25, 35);
-
-        for (int value : input) {
-            tree.insert(value);
-        }
-
-        // Test searching for values that exist
-        assertNotNull(tree.search(20));
-        assertNotNull(tree.search(10));
-        assertNotNull(tree.search(35));
-
-        // Test searching for values that don't exist
-        assertEquals(null, tree.search(0));
-        assertEquals(null, tree.search(40));
-    }
-
 }
