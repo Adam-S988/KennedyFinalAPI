@@ -115,4 +115,20 @@ public class BinarySearchTree {
             this.root = root;
         }
     }
+
+    public BSTNode search(int value) {
+        return searchRecursive(root, value);
+    }
+
+    private BSTNode searchRecursive(BSTNode current, int value) {
+        if (current == null || current.getValue() == value) {
+            return current;
+        }
+        if (value < current.getValue()) {
+            return searchRecursive(current.getLeft(), value);
+        } else {
+            return searchRecursive(current.getRight(), value);
+        }
+    }
+
 }
